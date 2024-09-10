@@ -2,18 +2,23 @@ package steps;
 
 import component.WinDriver;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
+import utils.Helper;
+import utils.Operations;
 
-public class Operation extends WinDriver{
+public class Operation extends WinDriver {
 
     private final WinDriver winDriver;
+    private final Helper helper;
 
-    public Operation(WinDriver driver){
+    public Operation(WinDriver driver, Helper helper) {
         this.winDriver = driver;
+        this.helper = helper;
     }
 
-    @When("the user presses on the + sign")
+    @When("the user presses on the {string} sign")
     public void pressSign(String sign) {
-        winDriver.getWindowsDriver().findElement(By.name(sign)).click();
+
+        helper.op = Operations.valueOf(helper.transformSignForInspectElement(sign));
+        winDriver.getWindowsDriver().findElementByAccessibilityId(helper.transformSignForInspectElement(sign)).click();
     }
 }

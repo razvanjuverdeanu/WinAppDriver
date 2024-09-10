@@ -9,23 +9,30 @@ import java.util.concurrent.TimeUnit;
 public class WinDriver {
     private WindowsDriver windowsDriver;
 
-    public WinDriver() {
+    public WindowsDriver getWindowsDriver() {
+
+        if (windowsDriver == null) {
+            windowsDriver = createDriver();
+        }
+        return windowsDriver;
+    }
+
+    private WindowsDriver createDriver(){
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("app", "C:\\Windows\\System32\\calc.exe");
+        desiredCapabilities.setCapability("app", "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App");
         desiredCapabilities.setCapability("platformName", "Windows");
         desiredCapabilities.setCapability("deviceName", "winPC");
-        desiredCapabilities.setCapability("ms:waitForAppLaunch", "5");
+        desiredCapabilities.setCapability("ms:waitForAppLaunch", "3");
 
         try {
             windowsDriver = new WindowsDriver(new URL("http://127.0.0.1:4723"), desiredCapabilities);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         windowsDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
-
-    public WindowsDriver getWindowsDriver (){
         return windowsDriver;
     }
 }
+
+

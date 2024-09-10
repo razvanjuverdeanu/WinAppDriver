@@ -7,11 +7,12 @@ public class OpenCalculator extends WinDriver {
 
     private final WinDriver winDriver;
 
-    public OpenCalculator(WinDriver driver){
+    public OpenCalculator(WinDriver driver) {
         this.winDriver = driver;
     }
 
     @Given("the user opens the system calculator")
     public void openCalculator() {
+        winDriver.getWindowsDriver();
     }
 }
