@@ -4,7 +4,7 @@
 * Given the user opens the system calculator
 * When the user enters number 1
 * And the user enters number 2
-* When the user presses on the + sign
+* When the user presses on the <operation> sign
 * Then The result is as expected
 
  ## Constraints:
